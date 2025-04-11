@@ -7,7 +7,7 @@ Table colony {
   
 }
 
-Table govenor {
+Table governor {
   id int pk
   name varchar
   colonyId int
@@ -42,7 +42,7 @@ Table colonyMineral {
 
 
 
-Ref: "colony"."id" < "govenor"."colonyId"
+Ref: "colony"."id" < "governor"."colonyId"
 
 Ref: "facilityMineral"."miningFacilityId" > "facility"."id"
 
