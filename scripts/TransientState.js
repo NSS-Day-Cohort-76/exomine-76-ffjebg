@@ -38,7 +38,7 @@ export const savePurchase = async () => {
         body: JSON.stringify(applicationState.transientState)
     
 }
-
+}
 
 
 export const fetchMinerals = async () => {
