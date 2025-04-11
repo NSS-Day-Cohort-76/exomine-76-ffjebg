@@ -17,7 +17,7 @@
     "facilities": [{"id": 1, "title": "Ganymede", "status": true},
                    {"id": 2, "title": "Io", "status": true},
                    {"id": 3, "title": "Titan", "status": true}],
-    "colonyMineral": [{"id": 1, "quantity": 30, "mineralId": 1, "colonyId": 1},
+    "colonyMinerals": [{"id": 1, "quantity": 30, "mineralId": 1, "colonyId": 1},
                       {"id": 2, "quantity": 25, "mineralId": 2, "colonyId": 2},
                       {"id":3, "quantity": 100, "mineralId": 3, "colonyId": 3}],
     "purchases": []
