@@ -1,3 +1,6 @@
+import { getGovernors } from "./TransientState.js"
+
+
 export const GovernorsList = () => {
     const Governors = getGovernors()
     return `${Governors.map(gov => `
