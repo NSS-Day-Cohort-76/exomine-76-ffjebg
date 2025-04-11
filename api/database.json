@@ -1,24 +1,4 @@
 {
-    "minerals":[{ "id": 1, "name": "Iron"},
-                { "id": 2, "name": "Chromium"},
-                { "id": 3, "name": "Molybdenum"},
-                { "id": 4, "name": "Plutonium"}],
-    "facilityMinerals": [{"id": 1, "mineralId": 1, "miningFacilityId": 1},
-                         {"id": 2, "mineralId": 2, "miningFacilityId": 2},
-                         {"id": 3, "mineralId": 3, "miningFacilityId": 3},
-                         {"id": 4, "mineralId": 4, "miningFacilityId": 4}],
-    "governors": [{"id": 1, "name": "Patricia Purdy", "colonyId": 1, "status": true},
-                  {"id": 2, "name": "Katrina Bahringer", "colonyId": 2, "status": false},
-                  {"id": 3, "name": "Lola Wolff", "colonyId": 3, "status": true},
-                  {"id": 4, "name": "Damon Hartmann", "colonyId": 4, "status": false}],
-    "colonies": [{"id": 1, "title": "Europa"},
-                 {"id": 2, "title": "Earth"},
-                 {"id": 3, "title": "Mars"}],
-    "facilities": [{"id": 1, "title": "Ganymede", "status": true},
-                   {"id": 2, "title": "Io", "status": true},
-                   {"id": 3, "title": "Titan", "status": true}],
-    "colonyMinerals": [{"id": 1, "quantity": 30, "mineralId": 1, "colonyId": 1},
-                      {"id": 2, "quantity": 25, "mineralId": 2, "colonyId": 2},
-                      {"id":3, "quantity": 100, "mineralId": 3, "colonyId": 3}],
-    "purchases": []
+    "minerals":[],
+    "facilityMinerals": []
 }
