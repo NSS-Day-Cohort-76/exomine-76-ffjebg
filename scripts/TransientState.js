@@ -27,6 +27,20 @@ export const resetTransientState = () => {
     }
 }
 
+export const getTransientState = () => {
+    return { ...applicationState.transientState }
+}
+export const savePurchase = async () => {
+    const postOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        
+        body: JSON.stringify(applicationState.transientState)
+    
+}
+
+
+
 export const fetchMinerals = async () => {
     const res = await fetch(`${API}/minerals`)
     const data = await res.json()
