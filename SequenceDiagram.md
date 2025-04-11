@@ -58,13 +58,3 @@ Colony.js-->Exomine.js: Return Colony HTML
 
 
 Exomine.js-->main.js: Return generated HTML
-
-User->DOM: User hits "Purchase" button
-
-DOM->TransientState.js: Get selected governor, facility, and desired minerals 
-
-TransientState.js-->API: POST chosen mineral for selected colony
-
-TransientState.js-->API: PUT (reduce) chosen mineral for selected colony
-
-main.js->DOM: Clear selected options, render page 
