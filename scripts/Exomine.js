@@ -1,9 +1,16 @@
 import { GovernorsList } from "./Governors.js";
 import { FacilitiesList } from "./Facilities.js";
+import { CompleteButton } from "./Button.js";
+import { FacilityMinerals } from "./Mineral.js"
 // import { MineralList} from "./Mineral.js"
 import { ColonyMineralList} from "./ColonyMinerals.js"
 
 export const render = async () => {
+  const governors = await GovernorsList();
+  const facilities = await FacilitiesList();
+  const facilityMineral = await FacilityMinerals()
+
+  return `
     const governors = await GovernorsList()
     const facilities = await FacilitiesList()
     // const minerals = MineralList()
@@ -15,7 +22,7 @@ export const render = async () => {
 
       <!-- Governor Selection -->
       <div class="box">
-        <label class="label has-text-white">Select Governor</label>
+        <label class="label has-text-gray">Select Governor</label>
         <div class="select is-fullwidth">
           <select id="governorSelect">
             <option value="">Choose a governor...</option>
@@ -32,7 +39,7 @@ export const render = async () => {
 
       <!-- Facility Selection -->
       <div class="box">
-        <label class="label has-text-white">Select Mining Facility</label>
+        <label class="label has-text-gray">Select Mining Facility</label>
         <div class="select is-fullwidth">
           <select id="facilitySelect">
             <option value="">Choose a facility...</option>
@@ -42,22 +49,16 @@ export const render = async () => {
       </div>
 
       <!-- Mineral Selection -->
-      <div class="box" id="mineralOptions">
-        <label class="label has-text-white">Available Minerals</label>
-        <!-- JS will render radio buttons here -->
-
-      </div>
-
+            ${facilityMineral}
       <!-- Space Cart -->
       <div class="box" id="spaceCart">
-        <h2 class="subtitle has-text-white">🛒 Space Cart</h2>
+        <h2 class="subtitle has-text-gray">🛒 Space Cart</h2>
         <div id="cartContents">
           <!-- JS will show selected mineral here -->
         </div>
-        <button class="button is-success mt-3" id="purchaseButton">Purchase Mineral</button>
+        ${CompleteButton()}
       </div>
     </div>
-  </section>`
-}
-
-
+  </section>
+  `;
+};
