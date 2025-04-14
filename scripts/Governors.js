@@ -1,8 +1,15 @@
-import { getGovernors } from "./TransientState.js"
+import { getGovernors, setGovernor } from "./TransientState.js"
+const handleGovernorChange = (changeEvent) => {
+    if (changeEvent.target.id === "governorSelect") {
+        const governorId = parseInt(changeEvent.target.value)
+        setGovernor(governorId)
+    }
+}
 
 
 export const GovernorsList = () => {
     const Governors = getGovernors()
+    document.addEventListener("change", handleGovernorChange)
     return `${Governors.map(gov => `
         <div>
         <option value="${gov.id}">${gov.name}</option>`).join("")}
