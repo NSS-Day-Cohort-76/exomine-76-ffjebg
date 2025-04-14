@@ -23,11 +23,7 @@ export const FacilityMinerals = async () => {
 
     document.addEventListener('change', handleFacilityMineralChoice)
 
-    let html = `
-        
-      <div class="box" id="mineralOptions">
-        <label class="label has-text-white">Available Minerals</label>
-    `
+    let html = ``
 
     const facilityMineralHTML = minerals.map((mineral)=>{
         return `
