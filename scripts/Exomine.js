@@ -1,12 +1,15 @@
 import { GovernorsList } from "./Governors.js";
 import { FacilitiesList } from "./Facilities.js";
 import { CompleteButton } from "./Button.js";
-import { FacilityMinerals } from "./Mineral.js"
+import { PurchaseList } from "./PurchaseList.js";
+// import { MineralList } from "./Mineral.js"
+// import { ColonyList } from "./Colony.js"
+import { FacilityMinerals } from "./Mineral.js";
 
 export const render = async () => {
   const governors = await GovernorsList();
   const facilities = await FacilitiesList();
-  const facilityMineral = await FacilityMinerals()
+  const facilityMineral = await FacilityMinerals();
 
   return `
   <section class="section">
@@ -39,11 +42,17 @@ export const render = async () => {
             ${facilityMineral}
       <!-- Space Cart -->
       <div class="box" id="spaceCart">
-        <h2 class="subtitle has-text-gray">🛒 Space Cart</h2>
+        <h2 class="subtitle has-text-grey">🛒 Space Cart</h2>
         <div id="cartContents">
           <!-- JS will show selected mineral here -->
         </div>
         ${CompleteButton()}
+      </div>
+
+
+      <!-- Purchase Log -->
+      <div class="box" id="purchaseLog">
+        ${PurchaseList()}
       </div>
     </div>
   </section>
