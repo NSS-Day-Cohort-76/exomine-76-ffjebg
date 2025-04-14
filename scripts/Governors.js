@@ -7,8 +7,10 @@ const handleGovernorChange = (changeEvent) => {
 }
 
 
-export const GovernorsList = () => {
-    const Governors = getGovernors()
+export const GovernorsList = async () => {
+    const response = await fetch("http://localhost:8088/governors")
+    const Governors = await response.json()
+    // const Governors = getGovernors()
     document.addEventListener("change", handleGovernorChange)
     return `${Governors.map(gov => `
         <div>

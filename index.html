@@ -7,51 +7,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="styles/main.css" />
 </head>
-<body class="has-background-dark has-text-light">
+<body class="has-background-dark has-text-light"><main id="container">
 
-    <div id="ship-container" class="has-text-centered">
-        <img src="images/spaceship.png" id="spaceship" alt="spaceship" />
-      </div>
-      <div id="starfield"></div>
+    
 
+    
+   
+      
 
-  <section class="section">
-    <div class="container">
-      <h1 class="title has-text-light">🪐 Exomine Mineral Trade Platform</h1>
-
-      <!-- Governor Selection -->
-      <div class="box">
-        <label class="label has-text-white">Select Governor</label>
-        <div class="select is-fullwidth">
-          <select id="governorSelect">
-            <option value="">Choose a governor...</option>
-            <!-- JS will populate this -->
-          </select>
-        </div>
-      </div>
-
-      <!-- Facility Selection -->
-      <div class="box">
-        <label class="label has-text-white">Select Mining Facility</label>
-        <div class="select is-fullwidth">
-          <select id="facilitySelect" disabled>
-            <option value="">Choose a facility...</option>
-            <!-- JS will populate this -->
-          </select>
-        </div>
-      </div>
-
-      <!-- Space Cart -->
-      <div class="box" id="spaceCart">
-        <h2 class="subtitle has-text-white">🛒 Space Cart</h2>
-        <div id="cartContents">
-          <!-- JS will show selected mineral here -->
-        </div>
-        <button class="button is-success mt-3" id="purchaseButton" disabled>Purchase Mineral</button>
-      </div>
-    </div>
-  </section>
-
+</main>
   <script type="module" src="scripts/main.js"></script>
 </body>
 </html>
