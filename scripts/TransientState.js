@@ -109,7 +109,7 @@ getPurhcases
 
 */
 // SETTERS !!!!
-export const setGovernor = id;
+
 export const setFacility = (facilityId) => {
   applicationState.userChoices.facilityId = facilityId;
   document.dispatchEvent(new CustomEvent("stateChanged"));
@@ -117,9 +117,31 @@ export const setFacility = (facilityId) => {
 
 export const setGovernor = (id) => {
   applicationState.userChoices.governorId = id;
+  //assign a colonyId based on the selected Governor
+  const governor = applicationState.governors.find((gov) => gov.id === id);
+  if (governor && governor.colonyId) {
+    applicationState.userChoices.colonyId = governor.colonyId;
+  } else {
+    applicationState.userChoices.colonyId = 0;
+  }
+  document.dispatchEvent(new CustomEvent("stateChanged"));
 };
+export const setMineral = (id) => {
+  applicationState.userChoices.mineralId = id;
+  document.dispatchEvent(new CustomEvent("stateChanged"));
+};
+export const purchaseMineral = async () => {
+  const state = applicationState.userChoices;
 
-export const purchaseMineral = () => {
+  if (
+    !state.governorId ||
+    !state.facilityId ||
+    !state.mineralId ||
+    !state.colonyId
+  )
+    alert("Please finish your selectings...");
+  return;
+
   /*
         Does the chosen governor's colony already own some of this mineral?
             - If yes, what should happen?
