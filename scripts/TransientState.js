@@ -88,7 +88,7 @@ export const fetchPurchases = async () => {
     const data = await res.json()
     applicationState.purchases = data
 }
-export const getPurhcases = () => {
+export const getPurchases = () => {
     return applicationState.purchases.map(purchase => ({ ...purchase }))
 }
 /* These are all currently implemented, but are there others we might need to add?
