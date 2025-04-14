@@ -1,6 +1,6 @@
 const API = "http://localhost:8088";
 
-const applicationState = {
+export const applicationState = {
   minerals: [],
   facilityMinerals: [],
   facilities: [],
