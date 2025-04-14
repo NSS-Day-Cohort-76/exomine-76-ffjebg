@@ -8,7 +8,7 @@ const handleFacilityChange = (changeEvent) => {
 
 export const FacilitiesList = () => {
     const Facilities = getFacilities()
-    document.addEventListener("chang", handleFacilityChange)
+    document.addEventListener("change", handleFacilityChange)
     return `${Facilities.map(Facility => `
         <div>
         <option value="${Facility.id}">${Facility.name}</option>`).join("")}
