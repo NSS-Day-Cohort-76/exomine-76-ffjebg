@@ -1,16 +1,23 @@
 import { render } from "./Exomine.js";
 import { CompleteButton, placeOrder } from "./Button.js";
 
+const mainContainer = document.querySelector("#container");
+
 const renderAllHTML = async () => {
-  await render();
+  mainContainer.innerHTML = await render();
 };
 
-// changed newOrderCreated to stateChanged
+// Hook into render cycle (use the one that matches your app's logic)
 document.addEventListener("stateChanged", (event) => {
   console.log("State of data has changed. Regenerating HTML...");
   renderAllHTML();
 });
 
-// adding the Purchase button to the DOM right hurr and the click listener
-document.querySelector("#spaceCart").innerHTML += CompleteButton();
-placeOrder();
+// Add purchase button + click listener
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("#spaceCart").innerHTML += CompleteButton();
+  placeOrder();
+});
+
+// Initial render
+renderAllHTML();

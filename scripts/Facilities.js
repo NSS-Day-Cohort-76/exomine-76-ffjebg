@@ -6,11 +6,12 @@ const handleFacilityChange = (changeEvent) => {
     }
 }
 
-export const FacilitiesList = () => {
-    const Facilities = getFacilities()
+export const FacilitiesList = async () => {
+    const response = await fetch("http://localhost:8088/facilities")
+    const Facilities = await response.json()
     document.addEventListener("change", handleFacilityChange)
     return `${Facilities.map(Facility => `
         <div>
-        <option value="${Facility.id}">${Facility.name}</option>`).join("")}
+        <option value="${Facility.id}">${Facility.title}</option>`).join("")}
         </div>`
 }
