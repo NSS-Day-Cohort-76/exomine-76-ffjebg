@@ -108,7 +108,8 @@ fetchPurchases
 getPurhcases
 
 */
-
+// SETTERS !!!!
+export const setGovernor = id;
 export const setFacility = (facilityId) => {
   applicationState.userChoices.facilityId = facilityId;
   document.dispatchEvent(new CustomEvent("stateChanged"));
