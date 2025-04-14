@@ -1,5 +1,5 @@
 import { getGovernors, setGovernor } from "./TransientState.js"
-const handleGovernorChange = (changeEvent) => {
+export const handleGovernorChange = (changeEvent) => {
     if (changeEvent.target.id === "governorSelect") {
         const governorId = parseInt(changeEvent.target.value)
         setGovernor(governorId)

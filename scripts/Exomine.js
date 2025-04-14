@@ -1,13 +1,13 @@
 import { GovernorsList } from "./Governors.js";
 import { FacilitiesList } from "./Facilities.js";
 // import { MineralList} from "./Mineral.js"
-// import { ColonyList} from "./Colony.js"
+import { ColonyMineralList} from "./ColonyMinerals.js"
 
 export const render = async () => {
     const governors = await GovernorsList()
     const facilities = await FacilitiesList()
     // const minerals = MineralList()
-    // const colonies = ColonyList()
+    const colonies = ColonyMineralList()
     return `
   <section class="section">
     <div class="container">
@@ -22,6 +22,12 @@ export const render = async () => {
             ${governors}
           </select>
         </div>
+      </div>
+
+    <!-- Colony Inventory -->
+      <div class="box" id="colonyMinerals">
+        <label class="label has-text-white">Colony Minerals</label>
+        ${colonies}
       </div>
 
       <!-- Facility Selection -->
