@@ -1,5 +1,6 @@
 import { GovernorsList } from "./Governors.js";
 import { FacilitiesList } from "./Facilities.js";
+import { Sales } from "./PurchaseList.js";
 // import { MineralList} from "./Mineral.js"
 // import { ColonyList} from "./Colony.js"
 
@@ -8,6 +9,7 @@ export const render = async () => {
     const facilities = await FacilitiesList()
     // const minerals = MineralList()
     // const colonies = ColonyList()
+    const sales = await Sales()
     return `
   <section class="section">
     <div class="container">
@@ -40,6 +42,12 @@ export const render = async () => {
         <label class="label has-text-white">Available Minerals</label>
         <!-- JS will render radio buttons here -->
 
+      </div>
+
+      <!-- Colony Minerals -->
+      <div class="box" id="colonyMinerals">
+      <label class="label has-text-white">Mineral Changes</label>
+      ${sales}
       </div>
 
       <!-- Space Cart -->
