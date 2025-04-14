@@ -1,5 +1,5 @@
 import { render } from "./Exomine.js";
-import { CompleteButton, placeOrder } from "./Button.js";
+// import { CompleteButton, placeOrder } from "./Button.js";
 
 const mainContainer = document.querySelector("#container");
 
@@ -13,11 +13,11 @@ document.addEventListener("stateChanged", (event) => {
   renderAllHTML();
 });
 
-// Add purchase button + click listener
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector("#spaceCart").innerHTML += CompleteButton();
-  placeOrder();
-});
+// // Add purchase button + click listener
+// document.addEventListener("DOMContentLoaded", () => {
+//   document.querySelector("#spaceCart").innerHTML += CompleteButton();
+//   placeOrder();
+// });
 
 // Initial render
 renderAllHTML();
