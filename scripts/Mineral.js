@@ -1,5 +1,5 @@
 
-import { applicationState, setMineral } from TransientState.js
+import { applicationState, setMineral } from './TransientState.js'
 
 const handleFacilityMineralChoice = (event) => {
     if (event.target.name === "facilityMinerals") {
@@ -8,7 +8,7 @@ const handleFacilityMineralChoice = (event) => {
 }
 
 export const getMineralForFacility = async () => {
-    const response = await fetch("http://localhost:8088/facilityMineral?_expand=mineral&_expand=facility")
+    const response = await fetch("http://localhost:8088/facilityMinerals?_expand=mineral&_expand=miningFacility")
     const facilityMinerals = await response.json()
 
     const selectedFacilityId = applicationState.userChoices.facilityId
@@ -18,7 +18,7 @@ export const getMineralForFacility = async () => {
     return filteredMinerals.map(fm => fm.mineral)
 }
 
-export const facilityMinerals = async () => {
+export const FacilityMinerals = async () => {
     const minerals = await getMineralForFacility()
 
     document.addEventListener('change', handleFacilityMineralChoice)

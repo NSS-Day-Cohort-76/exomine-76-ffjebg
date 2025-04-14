@@ -1,13 +1,13 @@
 import { GovernorsList } from "./Governors.js";
 import { FacilitiesList } from "./Facilities.js";
-import { MineralList} from "./Mineral.js"
 import { ColonyList} from "./Colony.js"
+import { FacilityMinerals } from "./Mineral.js";
 
 export const render = async () => {
     const governors = GovernorsList()
     const facilities = FacilitiesList()
-    const minerals = MineralList()
     const colonies = ColonyList()
+    const facilityMineral = await FacilityMinerals()
 
-    return `${governors}${facilities}${minerals}${colonies}`
+    return `${governors}${facilities}${facilityMineral}`
 }
