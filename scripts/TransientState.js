@@ -133,16 +133,84 @@ export const setMineral = (id) => {
 export const purchaseMineral = async () => {
   const state = applicationState.userChoices;
 
+  // 1. Make sure all selections are made
   if (
     !state.governorId ||
     !state.facilityId ||
     !state.mineralId ||
     !state.colonyId
-  )
-    alert("Please finish your selectings...");
-  return;
+  ) {
+    alert("Please finish your selections...");
+    return;
+  }
 
-  /*
+  // 2. Find the matching facilityMineral entry
+  const facilityMineral = applicationState.facilityMinerals.find(
+    (fm) =>
+      fm.facilityId === state.facilityId && fm.mineralId === state.mineralId
+  );
+
+  if (!facilityMineral || facilityMineral.quantity <= 0) {
+    alert("Facility is out of this mineral!");
+    return;
+  }
+
+  // 3. Subtract 1 from facilityMinerals
+  const updatedFM = {
+    ...facilityMineral,
+    quantity: facilityMineral.quantity - 1,
+  };
+
+  await fetch(`${API}/facilityMinerals/${facilityMineral.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedFM),
+  });
+
+  // 4. Update or add to colonyMinerals
+  const colonyMineral = applicationState.colonyMinerals.find(
+    (cm) => cm.colonyId === state.colonyId && cm.mineralId === state.mineralId
+  );
+
+  if (colonyMineral) {
+    const updatedCM = {
+      ...colonyMineral,
+      quantity: colonyMineral.quantity + 1,
+    };
+
+    await fetch(`${API}/colonyMinerals/${colonyMineral.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedCM),
+    });
+  } else {
+    await fetch(`${API}/colonyMinerals`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        colonyId: state.colonyId,
+        mineralId: state.mineralId,
+        quantity: 1,
+      }),
+    });
+  }
+
+  // 5. Log the purchase in /purchases
+  await fetch(`${API}/purchases`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      ...state,
+      timestamp: Date.now(),
+    }),
+  });
+
+  // 6. Reset and re-render
+  resetTransientState();
+  document.dispatchEvent(new CustomEvent("stateChanged"));
+};
+
+/*
         Does the chosen governor's colony already own some of this mineral?
             - If yes, what should happen?
             - If no, what should happen?
@@ -153,6 +221,3 @@ export const purchaseMineral = async () => {
 
         Only the foolhardy try to solve this problem with code.
     */
-
-  document.dispatchEvent(new CustomEvent("stateChanged"));
-};
