@@ -38,8 +38,7 @@ export const render = async () => {
       </div>
 
       <!-- Mineral Selection -->
-      <div class="box" id="mineralOptions">
-        <label class="label has-text-gray">Available Minerals</label>
+      
         ${facilityMineral}
 
       </div>

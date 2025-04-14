@@ -13,9 +13,9 @@ export const getMineralForFacility = async () => {
 
     const selectedFacilityId = applicationState.userChoices.facilityId
 
-    const filteredMinerals = facilityMinerals.filter(fm => fm.miningFacilityId === selectedFacilityId)
-
-    return filteredMinerals.map(fm => fm.mineral)
+    
+    return facilityMinerals.filter(fm => fm.miningFacilityId === selectedFacilityId)
+    
 }
 
 export const FacilityMinerals = async () => {
@@ -23,11 +23,23 @@ export const FacilityMinerals = async () => {
 
     document.addEventListener('change', handleFacilityMineralChoice)
 
-    let html = ``
+    const facilityId = applicationState.userChoices.facilityId
 
-    const facilityMineralHTML = minerals.map((mineral)=>{
+    if (!facilityId){
+        return `<div class="box"><strong>Facility Minerals</strong></div>`
+    }
+    const facilityResponse = await fetch(`http://localhost:8088/facilities/${facilityId}`)
+    const facility = await facilityResponse.json()
+    
+    let html = `
+        <div class="box" id="mineralOptions">
+            <label class="label has-text-gray">Facility Minerals for ${facility.title}</label>
+    `
+
+    const facilityMineralHTML = minerals.map((fm) => {
         return `
-            <input type="radio" name="facilityMinerals" value="${mineral.id}" /> ${mineral.name}
+            <input type="radio" name="facilityMinerals" value="${fm.mineral.id}" />
+            ${fm.amount} tons of ${fm.mineral.name}
         `
     })
     html += facilityMineralHTML.join("")
