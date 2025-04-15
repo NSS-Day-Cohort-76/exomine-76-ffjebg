@@ -22,41 +22,49 @@
       "id": 1,
       "mineralId": 1,
       "miningFacilityId": 1,
-      "amount": 50,
-      "quantity": null
+      "amount": 50
     },
     {
       "id": 2,
       "mineralId": 2,
       "miningFacilityId": 2,
-      "amount": 49,
-      "quantity": null
+      "amount": 48
     },
     {
       "id": 3,
       "mineralId": 3,
       "miningFacilityId": 3,
-      "amount": 48,
-      "quantity": null
+      "amount": 48
     },
     {
       "id": 4,
       "mineralId": 4,
       "miningFacilityId": 1,
-      "amount": 29,
-      "quantity": null
-    },
-    {
-      "id": 4,
-      "mineralId": 4,
-      "miningFacilityId": 1,
-      "amount": 30
+      "amount": 59
     },
     {
       "id": 5,
       "mineralId": 2,
       "miningFacilityId": 1,
       "amount": 19
+    },
+    {
+      "id": 6,
+      "mineralId": 1,
+      "miningFacilityId": 4,
+      "amount": 24
+    },
+    {
+      "id": 7,
+      "mineralId": 3,
+      "miningFacilityId": 4,
+      "amount": 29
+    },
+    {
+      "id": 8,
+      "mineralId": 4,
+      "miningFacilityId": 4,
+      "amount": 10
     }
   ],
   "governors": [
@@ -97,6 +105,10 @@
     {
       "id": 3,
       "title": "Mars"
+    },
+    {
+      "id": 4,
+      "title": "Titan Base"
     }
   ],
   "facilities": [
@@ -113,6 +125,11 @@
     {
       "id": 3,
       "title": "Titan",
+      "status": true
+    },
+    {
+      "id": 4,
+      "title": "SpaceStation Jake",
       "status": true
     }
   ],
@@ -133,94 +150,77 @@
       "id": 3,
       "quantity": 100,
       "mineralId": 3,
-      "colonyId": 3
-    },
-    {
-      "colonyId": 1,
-      "mineralId": 4,
-      "quantity": 1,
-      "id": 4
-    },
-    {
-      "colonyId": 1,
-      "mineralId": 3,
-      "quantity": 1,
-      "id": 5,
+      "colonyId": 3,
       "amount": null
     },
     {
-      "colonyId": 4,
-      "mineralId": 1,
+      "id": 4,
       "quantity": 1,
-      "id": 6
-    },
-    {
-      "colonyId": 1,
-      "mineralId": 2,
-      "quantity": 1,
-      "id": 7
-    },
-    {
-      "colonyId": 2,
       "mineralId": 4,
-      "quantity": 1,
-      "id": 8
+      "colonyId": 1
     },
     {
-      "colonyId": 4,
-      "mineralId": 2,
+      "id": 5,
       "quantity": 1,
-      "id": 9
-    },
-    {
-      "colonyId": 2,
       "mineralId": 3,
-      "quantity": 1,
-      "id": 10
+      "colonyId": 1
     },
     {
-      "colonyId": 3,
-      "mineralId": 2,
+      "id": 6,
       "quantity": 1,
-      "id": 11
+      "mineralId": 1,
+      "colonyId": 4,
+      "amount": null
+    },
+    {
+      "id": 7,
+      "quantity": 1,
+      "mineralId": 2,
+      "colonyId": 1
+    },
+    {
+      "id": 8,
+      "quantity": 1,
+      "mineralId": 4,
+      "colonyId": 2
+    },
+    {
+      "id": 9,
+      "quantity": 1,
+      "mineralId": 2,
+      "colonyId": 4
+    },
+    {
+      "id": 10,
+      "quantity": 1,
+      "mineralId": 3,
+      "colonyId": 2
+    },
+    {
+      "id": 11,
+      "quantity": 1,
+      "mineralId": 2,
+      "colonyId": 3
     }
   ],
   "purchases": [
     {
-      "governorId": 4,
-      "facilityId": 1,
-      "mineralId": 2,
-      "colonyId": 4,
+      "governorId": 3,
+      "facilityId": 4,
+      "mineralId": 3,
+      "colonyId": 3,
       "quantity": 0,
-      "timestamp": 1744728180052,
+      "timestamp": 1744731036034,
       "id": 1
     },
     {
-      "governorId": 1,
-      "facilityId": 3,
-      "mineralId": 3,
-      "colonyId": 1,
+      "governorId": 4,
+      "facilityId": 4,
+      "mineralId": 1,
+      "colonyId": 4,
       "quantity": 0,
-      "timestamp": 1744728207146,
+      "timestamp": 1744731047336,
       "id": 2
-    },
-    {
-      "governorId": 2,
-      "facilityId": 3,
-      "mineralId": 3,
-      "colonyId": 2,
-      "quantity": 0,
-      "timestamp": 1744728225182,
-      "id": 3
-    },
-    {
-      "governorId": 3,
-      "facilityId": 2,
-      "mineralId": 2,
-      "colonyId": 3,
-      "quantity": 0,
-      "timestamp": 1744728251187,
-      "id": 4
     }
   ]
 }
