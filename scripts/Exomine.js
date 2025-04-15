@@ -15,8 +15,7 @@ export const render = async () => {
     const facilities = await FacilitiesList()
     // const minerals = MineralList()
     const colonies = ColonyMineralList()
-    return `
-  <section class="section">
+    return ` <section class="section">
     <div class="container">
       <h1 class="title has-text-light">🪐 Exomine Mineral Trade Platform</h1>
 
@@ -59,6 +58,5 @@ export const render = async () => {
         ${CompleteButton()}
       </div>
     </div>
-  </section>
-  `;
+  </section>`;
 };
