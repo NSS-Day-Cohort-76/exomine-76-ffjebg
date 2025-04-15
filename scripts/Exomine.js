@@ -39,7 +39,7 @@ export const render = async () => {
       </div>
 
       <!-- Mineral Selection -->
-      <div id="mineralOptions">
+      <div class="box" id="mineralOptions">
       ${facilityMineral}
       </div>
       <!-- Space Cart -->
