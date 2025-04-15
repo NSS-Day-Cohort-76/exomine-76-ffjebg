@@ -66,7 +66,7 @@ export const getGovernors = () => {
 };
 
 export const fetchColonies = async () => {
-  const res = await fetch(`${API}/minerals`);
+  const res = await fetch(`${API}/colonies`);
   const data = await res.json();
   applicationState.colonies = data;
 };
@@ -112,28 +112,32 @@ getPurhcases
 
 export const setFacility = (facilityId) => {
   applicationState.userChoices.facilityId = facilityId;
-  document.dispatchEvent(new CustomEvent("stateChanged"));
+  document.dispatchEvent(new CustomEvent("facilitySelect"));
 };
 
 export const setGovernor = (id) => {
   applicationState.userChoices.governorId = id;
   //assign a colonyId based on the selected Governor
   const governor = applicationState.governors.find((gov) => gov.id === id);
+  console.log("selected Gov:", governor);
+
   if (governor && governor.colonyId) {
     applicationState.userChoices.colonyId = governor.colonyId;
+    console.log("colony id set to:", governor.colonyId);
   } else {
     applicationState.userChoices.colonyId = 0;
+    console.warn(" No valid colony ID found for this Governor");
   }
-  document.dispatchEvent(new CustomEvent("stateChanged"));
+  document.dispatchEvent(new CustomEvent("governorSelect"));
 };
 export const setMineral = (id) => {
   applicationState.userChoices.mineralId = id;
-  document.dispatchEvent(new CustomEvent("stateChanged"));
+  document.dispatchEvent(new CustomEvent("mineralSelect"));
 };
+
 export const purchaseMineral = async () => {
   const state = applicationState.userChoices;
 
-  // 1. Make sure all selections are made
   if (
     !state.governorId ||
     !state.facilityId ||
@@ -144,21 +148,23 @@ export const purchaseMineral = async () => {
     return;
   }
 
-  // 2. Find the matching facilityMineral entry
+  // Step 1: Subtract from facilityMinerals
+  console.log("state at purchase:", state);
+  console.log("facilityminerals from state", applicationState.facilityMinerals);
   const facilityMineral = applicationState.facilityMinerals.find(
     (fm) =>
-      fm.facilityId === state.facilityId && fm.mineralId === state.mineralId
+      fm.miningFacilityId === state.facilityId &&
+      fm.mineralId === state.mineralId
   );
 
-  if (!facilityMineral || facilityMineral.quantity <= 0) {
+  if (!facilityMineral || facilityMineral.amount <= 0) {
     alert("Facility is out of this mineral!");
     return;
   }
 
-  // 3. Subtract 1 from facilityMinerals
   const updatedFM = {
     ...facilityMineral,
-    quantity: facilityMineral.quantity - 1,
+    amount: facilityMineral.amount - 1,
   };
 
   await fetch(`${API}/facilityMinerals/${facilityMineral.id}`, {
@@ -167,7 +173,7 @@ export const purchaseMineral = async () => {
     body: JSON.stringify(updatedFM),
   });
 
-  // 4. Update or add to colonyMinerals
+  // ✅ Step 2: Add or update in colonyMinerals
   const colonyMineral = applicationState.colonyMinerals.find(
     (cm) => cm.colonyId === state.colonyId && cm.mineralId === state.mineralId
   );
@@ -175,7 +181,7 @@ export const purchaseMineral = async () => {
   if (colonyMineral) {
     const updatedCM = {
       ...colonyMineral,
-      quantity: colonyMineral.quantity + 1,
+      amount: colonyMineral.amount + 1,
     };
 
     await fetch(`${API}/colonyMinerals/${colonyMineral.id}`, {
@@ -195,7 +201,7 @@ export const purchaseMineral = async () => {
     });
   }
 
-  // 5. Log the purchase in /purchases
+  // Step 3: Log the purchase
   await fetch(`${API}/purchases`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -205,7 +211,6 @@ export const purchaseMineral = async () => {
     }),
   });
 
-  // 6. Reset and re-render
   resetTransientState();
   document.dispatchEvent(new CustomEvent("stateChanged"));
 };
