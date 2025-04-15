@@ -21,7 +21,7 @@ export const getMineralForFacility = async () => {
 export const FacilityMinerals = async () => {
     const minerals = await getMineralForFacility()
 
-    document.addEventListener('change', handleFacilityMineralChoice)
+    // document.addEventListener('change', handleFacilityMineralChoice)
 
     const facilityId = applicationState.userChoices.facilityId
 
@@ -33,16 +33,18 @@ export const FacilityMinerals = async () => {
     
     let html = `
         <div class="box" id="mineralOptions">
+        <input type="radio" name="facilityMinerals" value="${fm.mineral.id}"  />
             <label class="label has-text-gray">Facility Minerals for ${facility.title}</label>
     `
 
     const facilityMineralHTML = minerals.map((fm) => {
         return `
-            <input type="radio" name="facilityMinerals" value="${fm.mineral.id}" />
-            ${fm.amount} tons of ${fm.mineral.name}
+        ${fm.amount} tons of ${fm.mineral.name}
         `
     })
     html += facilityMineralHTML.join("")
     html += "</div>"
     return html
 }
+
+// ${fm.mineral.id === applicationState.userChoices.mineralId ? "checked" : ""}
