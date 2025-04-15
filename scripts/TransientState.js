@@ -157,14 +157,14 @@ export const purchaseMineral = async () => {
       fm.mineralId === state.mineralId
   );
 
-  if (!facilityMineral || facilityMineral.quantity <= 0) {
+  if (!facilityMineral || facilityMineral.amount <= 0) {
     alert("Facility is out of this mineral!");
     return;
   }
 
   const updatedFM = {
     ...facilityMineral,
-    quantity: facilityMineral.quantity - 1,
+    amount: facilityMineral.amount - 1,
   };
 
   await fetch(`${API}/facilityMinerals/${facilityMineral.id}`, {
@@ -181,7 +181,7 @@ export const purchaseMineral = async () => {
   if (colonyMineral) {
     const updatedCM = {
       ...colonyMineral,
-      quantity: colonyMineral.quantity + 1,
+      amount: colonyMineral.amount + 1,
     };
 
     await fetch(`${API}/colonyMinerals/${colonyMineral.id}`, {

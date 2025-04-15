@@ -19,7 +19,7 @@ export const PurchaseList = () => {
 
       const governorName = governor ? governor.name : "Unknown Governor";
       const mineralName = mineral ? mineral.name : "Unknown Mineral";
-      const colonyName = colony ? colony.name : "Unknown Colony";
+      const colonyName = colony ? colony.title : "Unknown Colony";
       const time = new Date(purchase.timestamp).toLocaleString();
 
       return `
@@ -35,8 +35,8 @@ export const PurchaseList = () => {
 
   return `
       <section class="section">
-        <h2 class="subtitle has-text-white">📜 Purchase Log</h2>
-        <ul class="has-text-white is-size-6">
+        <h2 class="subtitle has-text-gray">📜 Purchase Log</h2>
+        <ul class="has-text-gray is-size-6">
           ${listItems}
         </ul>
       </section>

@@ -29,20 +29,21 @@
       "id": 2,
       "mineralId": 2,
       "miningFacilityId": 2,
-      "amount": 50
+      "amount": 49,
+      "quantity": null
     },
     {
       "id": 3,
       "mineralId": 3,
       "miningFacilityId": 3,
-      "amount": 50,
+      "amount": 48,
       "quantity": null
     },
     {
       "id": 4,
       "mineralId": 4,
       "miningFacilityId": 1,
-      "amount": 30,
+      "amount": 29,
       "quantity": null
     },
     {
@@ -55,7 +56,7 @@
       "id": 5,
       "mineralId": 2,
       "miningFacilityId": 1,
-      "amount": 20
+      "amount": 19
     }
   ],
   "governors": [
@@ -144,23 +145,54 @@
       "colonyId": 1,
       "mineralId": 3,
       "quantity": 1,
-      "id": 5
+      "id": 5,
+      "amount": null
     },
     {
       "colonyId": 4,
       "mineralId": 1,
       "quantity": 1,
       "id": 6
+    },
+    {
+      "colonyId": 1,
+      "mineralId": 2,
+      "quantity": 1,
+      "id": 7
+    },
+    {
+      "colonyId": 2,
+      "mineralId": 4,
+      "quantity": 1,
+      "id": 8
+    },
+    {
+      "colonyId": 4,
+      "mineralId": 2,
+      "quantity": 1,
+      "id": 9
+    },
+    {
+      "colonyId": 2,
+      "mineralId": 3,
+      "quantity": 1,
+      "id": 10
+    },
+    {
+      "colonyId": 3,
+      "mineralId": 2,
+      "quantity": 1,
+      "id": 11
     }
   ],
   "purchases": [
     {
-      "governorId": 1,
+      "governorId": 4,
       "facilityId": 1,
-      "mineralId": 4,
-      "colonyId": 1,
+      "mineralId": 2,
+      "colonyId": 4,
       "quantity": 0,
-      "timestamp": 1744667304601,
+      "timestamp": 1744728180052,
       "id": 1
     },
     {
@@ -169,17 +201,26 @@
       "mineralId": 3,
       "colonyId": 1,
       "quantity": 0,
-      "timestamp": 1744667348623,
+      "timestamp": 1744728207146,
       "id": 2
     },
     {
-      "governorId": 4,
-      "facilityId": 1,
-      "mineralId": 1,
-      "colonyId": 4,
+      "governorId": 2,
+      "facilityId": 3,
+      "mineralId": 3,
+      "colonyId": 2,
       "quantity": 0,
-      "timestamp": 1744667358055,
+      "timestamp": 1744728225182,
       "id": 3
+    },
+    {
+      "governorId": 3,
+      "facilityId": 2,
+      "mineralId": 2,
+      "colonyId": 3,
+      "quantity": 0,
+      "timestamp": 1744728251187,
+      "id": 4
     }
   ]
 }
