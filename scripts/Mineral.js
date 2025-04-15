@@ -30,7 +30,7 @@ export const FacilityMinerals = async () => {
 
   return `
       <div class="box" id="mineralOptions">
-        <label class="label has-text-white">Available Minerals</label>
+        <label class="label has-text-gray">Available Minerals</label>
         ${matching
           .map(
             (fm) => `
