@@ -55,6 +55,4 @@ document.addEventListener("mineralSelect", () => {
   // reserved for showing a cart preview later on?
 });
 
-document.addEventListener("governorSelect", () => {
-  // reserved for future colony UI updates and mayhem.
-});
+document.addEventListener("governorSelect", renderAllHTML);

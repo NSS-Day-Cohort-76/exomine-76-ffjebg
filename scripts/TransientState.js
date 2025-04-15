@@ -13,8 +13,12 @@ export const applicationState = {
     facilityId: 0,
     mineralId: 0,
     colonyId: 0,
-    quantity: 0, //possible this is coming from somewhere else so might need to delete this
+    quantity: 1, //possible this is coming from somewhere else so might need to delete this
   },
+};
+
+export const getTransientState = () => {
+  return { ...applicationState.userChoices };
 };
 
 export const resetTransientState = () => {
@@ -173,6 +177,8 @@ export const purchaseMineral = async () => {
     body: JSON.stringify(updatedFM),
   });
 
+  await fetchFacilityMinerals();
+
   // ✅ Step 2: Add or update in colonyMinerals
   const colonyMineral = applicationState.colonyMinerals.find(
     (cm) => cm.colonyId === state.colonyId && cm.mineralId === state.mineralId
@@ -181,7 +187,7 @@ export const purchaseMineral = async () => {
   if (colonyMineral) {
     const updatedCM = {
       ...colonyMineral,
-      amount: colonyMineral.amount + 1,
+      quantity: colonyMineral.quantity + 1,
     };
 
     await fetch(`${API}/colonyMinerals/${colonyMineral.id}`, {
@@ -212,6 +218,9 @@ export const purchaseMineral = async () => {
   });
 
   resetTransientState();
+  await fetchFacilityMinerals();
+  await fetchColonyMinerals(); // ← Add this
+  document.dispatchEvent(new CustomEvent("facilitySelect"));
   document.dispatchEvent(new CustomEvent("stateChanged"));
 };
 

@@ -30,10 +30,10 @@ export const render = async () => {
       </div>
 
          <!-- Colony Minerals -->
-        <div>
+      
          <div class="box" id="colony-inventory">
             ${colonyMineral}
-        </div>
+       
       </div>
 
       <!-- Facility Selection -->

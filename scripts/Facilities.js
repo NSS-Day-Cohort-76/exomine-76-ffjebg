@@ -1,6 +1,10 @@
-import { getFacilities, setFacility } from "./TransientState.js";
+import {
+  getFacilities,
+  setFacility,
+  applicationState,
+} from "./TransientState.js";
 
-// 🔥 Add this ONCE globally
+// 🔥 Register facility selection listener once
 document.addEventListener("change", (event) => {
   if (event.target.id === "facilitySelect") {
     const facilityId = parseInt(event.target.value);
@@ -12,12 +16,18 @@ export const FacilitiesList = async () => {
   const response = await fetch("http://localhost:8088/facilities");
   const facilities = await response.json();
 
-  // ✅ Return ONLY option tags — Exomine.js already wraps them in <select>
+  const selectedId = applicationState.userChoices.facilityId;
+
+  // ✅ Return only <option> tags — Exomine wraps this in <select>
   return facilities
     .map(
       (facility) => `
-    <option value="${facility.id}">${facility.title}</option>
-  `
+        <option value="${facility.id}" ${
+        facility.id === selectedId ? "selected" : ""
+      }>
+          ${facility.title}
+        </option>
+      `
     )
     .join("");
 };
