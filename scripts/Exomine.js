@@ -2,20 +2,16 @@ import { GovernorsList } from "./Governors.js";
 import { FacilitiesList } from "./Facilities.js";
 import { CompleteButton } from "./Button.js";
 import { FacilityMinerals } from "./Mineral.js"
-// import { MineralList} from "./Mineral.js"
-import { ColonyMineralList} from "./ColonyMinerals.js"
+import { ColonyMineralsList } from "./ColonyMinerals.js"
 
 export const render = async () => {
   const governors = await GovernorsList();
   const facilities = await FacilitiesList();
   const facilityMineral = await FacilityMinerals()
+  const colonyMineral = await ColonyMineralsList()
 
   return `
-    const governors = await GovernorsList()
-    const facilities = await FacilitiesList()
-    // const minerals = MineralList()
-    const colonies = ColonyMineralList()
-    return ` <section class="section">
+  <section class="section">
     <div class="container">
       <h1 class="title has-text-light">🪐 Exomine Mineral Trade Platform</h1>
 
@@ -28,12 +24,6 @@ export const render = async () => {
             ${governors}
           </select>
         </div>
-      </div>
-
-    <!-- Colony Inventory -->
-      <div class="box" id="colonyMinerals">
-        <label class="label has-text-white">Colony Minerals</label>
-        ${colonies}
       </div>
 
       <!-- Facility Selection -->
@@ -58,5 +48,6 @@ export const render = async () => {
         ${CompleteButton()}
       </div>
     </div>
-  </section>`;
+  </section>
+  `;
 };

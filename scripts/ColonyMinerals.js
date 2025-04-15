@@ -9,10 +9,7 @@ export const ColonyMineralsList = () => {
    const Governors = getGovernors()
    const Colonies = getColonies()
 
-
-   const selectedGovernorId = applicationState.userChoices.governorId
-   const selectedGovernor = governors.find(gov => gov.id === selectedGovernorId)
- 
+   const selectedGovernor = Governors
    let html = '<div>'
 
    if (selectedGovernor) {
