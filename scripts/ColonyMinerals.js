@@ -1,35 +1,52 @@
+import {
+  getColonyMinerals,
+  getGovernors,
+  getMinerals,
+  getColonies,
+  getTransientState,
+} from "./TransientState.js";
 
-import { getColonyMinerals, getGovernors, getMinerals, getColonies, setGovernor } from "./TransientState.js"
+export const ColonyMineralsList = () => {
+  const ColonyMinerals = getColonyMinerals();
+  const Minerals = getMinerals();
+  const Governors = getGovernors();
+  const Colonies = getColonies();
 
+  const state = getTransientState();
+  const selectedGovernor = Governors.find((gov) => gov.id === state.governorId);
 
+  let html = "<div>";
 
-export const ColonyMineralsList =  () => {
-   const ColonyMinerals = getColonyMinerals()
-   const Minerals = getMinerals()
-   const Governors = getGovernors()
-   const Colonies = getColonies()
+  if (selectedGovernor) {
+    const colony = Colonies.find(
+      (colony) => colony.id === selectedGovernor.colonyId
+    );
+    html += `<h2 class="subtitle has-text-grey"><strong>${colony.title} Minerals</strong></h2>`;
 
-   const selectedGovernor = setGovernor()
-   let html = '<div>'
+    const colonyMineralData = ColonyMinerals.filter(
+      (cm) => cm.colonyId === selectedGovernor.colonyId
+    );
 
-   if (selectedGovernor) {
-      const selectedGovernor = Governors.find(gov => gov.id === selectedGovernor.id)
-      const colony = Colonies.find(colony => colony.id === selectedGovernor.colonyId)
-      html += `<h2>${colony.title} Minerals</h2>`
+    // Group and total minerals
+    const mineralTotals = {};
 
-      const colonyMineralData = ColonyMinerals.filter(colonyMineral => colonyMineral.mineralId)
-
-      for (const colonyMineral of colonyMineralData){
-         const mineral = Minerals.find(mineral => mineral.id === colonyMineral.MineralId)
-         html += `<p>${colonyMineral.quantity} tons of ${mineral.name}</p>`
+    for (const cm of colonyMineralData) {
+      if (!mineralTotals[cm.mineralId]) {
+        mineralTotals[cm.mineralId] = 0;
       }
- 
-   } else {
-      html += "<h2><strong>Colony Minerals</strong></h2>"
-   }
+      mineralTotals[cm.mineralId] += cm.quantity;
+    }
 
-   html += '</div>'
+    // Display each mineral and its total quantity
+    for (const mineralId in mineralTotals) {
+      const mineral = Minerals.find((m) => m.id === parseInt(mineralId));
+      html += `<p>${mineralTotals[mineralId]} tons of ${mineral.name}</p>`;
+    }
+  } else {
+    html += "<h2><strong>Colony Minerals</strong></h2>";
+  }
 
-   return html
+  html += "</div>";
 
-}
+  return html;
+};
